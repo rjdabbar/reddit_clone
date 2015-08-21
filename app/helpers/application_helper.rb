@@ -11,8 +11,10 @@ module ApplicationHelper
     if logged_in?
       delete_button(session_url, "Log out")
     else
-      "<a href=\"#{new_session_url}\">Log in</a>".html_safe
-      "<a href=\"#{new_user_url}\">Register</a>".html_safe
+      html = "<a href=\"#{new_session_url}\">Log in</a>".html_safe
+      html += "<br>".html_safe
+      html += "<a href=\"#{new_user_url}\">Register</a>".html_safe
+      html
     end
   end
 
