@@ -1,5 +1,6 @@
 <h1>Make a new Sub!</h1>
-
+<%= flash_errors %>
+<br><br>
 <form action="<%= subs_url %>" method="post">
   <%= form_auth_token %>
   <%= render "partials/sub_form", sub: @sub %>

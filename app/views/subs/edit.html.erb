@@ -1,6 +1,6 @@
 <h1>Edit <%= @sub.title %>!</h1>
 
-<form action="<%= subs_url %>" method="post">
+<form action="<%= sub_url(@sub) %>" method="post">
   <%= form_auth_token %>
   <input type="hidden" name="_method" value="patch">
   <%= render "partials/sub_form", sub: @sub %>

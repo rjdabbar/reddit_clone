@@ -1,4 +1,16 @@
 module ApplicationHelper
+  def flash_errors
+    if flash[:errors]
+      flash[:errors].map { |error| "#{error}" }.join("<br>").html_safe
+    end
+  end
+
+  def flash_notices
+    if flash[:notice]
+      flash[:notice].html_safe
+    end
+  end
+
   def form_auth_token
     <<-HTML.html_safe
       <input type="hidden"

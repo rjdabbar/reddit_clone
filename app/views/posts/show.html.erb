@@ -1,0 +1,5 @@
+<a href="<%= root_url %>"><< HOME</a>
+<a href="<%= sub_url(@post.sub) %>"><< <%= @post.sub.title %></a>
+<h1> <%= @post.title %></a> </h1>
+
+<a href="<%= edit_sub_post_url(@post.sub, @post) %>">Edit post</a>
