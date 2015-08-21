@@ -1,25 +1,23 @@
 <a href="<%= root_url %>"><< HOME</a>
+
 <h1> <%= @sub.title %> </h1>
 <%= flash_notices %>
-<p>
-  <%= @sub.description %>
-</p>
+<p><%= @sub.description %></p>
 
 <% if current_user == @sub.moderator %>
   <a href="<%= edit_sub_url(@sub) %>">Edit sub</a>
+  <%= delete_button(sub_url(@sub), "Remove Sub") %>
 <% end %>
+
 
 <h3>Posts</h3>
 <a href="<%= new_post_url %>">New Post</a>
+
 <ul>
-
-
-<% @sub.posts.each do |post| %>
-
-  <li>
-    <a href="<%= post_url(post) %>"><%= post.title %></a>
-    by: <%= post.author.user_name %>
-  </li>
-<% end %>
-
+  <% @sub.posts.each do |post| %>
+    <li>
+      <a href="<%= post_url(post) %>"><%= post.title %></a>
+      by: <%= post.author.user_name %>
+    </li>
+  <% end %>
 </ul>

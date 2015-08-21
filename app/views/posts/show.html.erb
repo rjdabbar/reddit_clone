@@ -12,18 +12,19 @@
 
 <% if current_user == @post.author %>
   <a href="<%= edit_post_url(@post) %>">Edit post</a>
+  <%= delete_button(post_url(@post), "Remove Post") %>
 <% end %>
-<br>
-<br>
+
+<br><br>
+
 <form action="<%= post_comments_url(@post) %>" method="post">
   <%= form_auth_token %>
   <%= render "partials/comment_form", action: :new,
                                       comment: Comment.new,
                                       post_id: @post.id %>
-
 </form>
 
 <br>
-<% @post.comments.where(parent_comment_id: nil).each do |comment| %>
-  <%= render "partials/comment", comment: comment %>
+<% @comment_hash[nil].each do |comment| %>
+  <%= render "partials/comment", comment: comment, comment_hash: @comment_hash %>
 <% end %>

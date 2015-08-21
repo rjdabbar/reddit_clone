@@ -31,13 +31,17 @@ class PostsController < ApplicationController
   end
 
   def destroy
+    @post = Post.find(params[:id])
+    @post.destroy!
+    redirect_to root_url
   end
 
   def index
   end
 
   def show
-    @post = Post.includes(:subs, comments: [:post, :child_comments]).find(params[:id])
+    @post = Post.includes(:subs, comments: [:post, :child_comments, :author]).find(params[:id])
+    @comment_hash = @post.comments_by_parent_id
   end
 
   private

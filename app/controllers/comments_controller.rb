@@ -7,11 +7,7 @@ class CommentsController < ApplicationController
   def create
     @comment = current_user.comments.new(comment_params)
     if @comment.save
-      if @comment.parent_comment_id.nil?
-        redirect_to post_url(@comment.post)
-      else
-        redirect_to post_comment_url(@comment.post, @comment.parent_comment_id)
-      end
+      create_redirect(@comment)
     else
       flash[:errors] = @comment.errors.full_messages
       render :new
@@ -36,13 +32,25 @@ class CommentsController < ApplicationController
 
   def show
     @comment = Comment.includes(:post).find(params[:id])
+    @comment_hash = @comment.post.comments_by_parent_id
   end
 
   def destroy
+    @comment = Comment.find(params[:id])
+    @comment.destroy!
+    redirect_to post_url(@comment.post_id)
   end
 
   private
   def comment_params
     params.require(:comment).permit(:content, :post_id, :parent_comment_id)
+  end
+
+  def create_redirect(comment)
+    if comment.parent_comment_id.nil?
+      redirect_to post_url(comment.post_id)
+    else
+      redirect_to post_comment_url(comment.post_id, comment.parent_comment_id)
+    end
   end
 end
