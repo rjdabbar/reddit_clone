@@ -1,5 +1,18 @@
-<input type="hidden" name="post[sub_id]" value="<%= params[:sub_id] %>">
-
+<% if params[:sub_id] %>
+  <input type="hidden" name="post[sub_id]" value="<%= params[:sub_id] %>">
+<% else %>
+  <label>Subreddits:</label>
+  <br>
+  <% Sub.all.each do |sub| %>
+    <input
+      type="checkbox"
+      name="post[sub_id][]"
+      value="<%= sub.id %>">
+      <%= sub.title %>
+      <br>
+  <% end %>
+<% end %>
+<br>
 <label for="post_title">Title:</label>
 <input id="post_title"
        type="text"

@@ -4,17 +4,20 @@
 <p>
   <%= @sub.description %>
 </p>
-<a href="<%= edit_sub_url(@sub) %>">Edit sub</a>
+
+<% if current_user == @sub.moderator %>
+  <a href="<%= edit_sub_url(@sub) %>">Edit sub</a>
+<% end %>
 
 <h3>Posts</h3>
-<a href="<%= new_sub_post_url(@sub) %>">New Post</a>
+<a href="<%= new_post_url %>">New Post</a>
 <ul>
 
 
 <% @sub.posts.each do |post| %>
 
   <li>
-    <a href="<%= sub_post_url(@sub, post) %>"><%= post.title %></a>
+    <a href="<%= post_url(post) %>"><%= post.title %></a>
     by: <%= post.author.user_name %>
   </li>
 <% end %>

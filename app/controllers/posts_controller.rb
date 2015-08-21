@@ -5,8 +5,8 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.new(post_params)
-
     if @post.save
+      @post.sub_ids = params[:post][:sub_id]
       flash[:notice] = "Post was successfully created"
       redirect_to sub_url(@post.sub)
     else
@@ -43,6 +43,6 @@ class PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:title, :url, :content, :sub_id)
+    params.require(:post).permit(:title, :url, :content, sub_id: [])
   end
 end

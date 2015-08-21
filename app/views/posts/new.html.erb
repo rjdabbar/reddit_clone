@@ -1,7 +1,7 @@
 <h1>Make a new post</h1>
 <%= flash_errors %>
 <br><br>
-<form action="<%= sub_posts_url %>" method="post">
+<form action="<%= posts_url %>" method="post">
     <%= form_auth_token %>
     <%= render "partials/post_form", post: @post%>
     <button>Submit</button>

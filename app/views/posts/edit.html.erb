@@ -1,6 +1,6 @@
 <h1>Edit <%= @post.title %></h1>
   <%= flash_errors %>
-<form action="<%= sub_post_url(@post.sub, @post) %>" method="post">
+<form action="<%= post_url(@post) %>" method="post">
     <%= form_auth_token %>
     <input type="hidden" name="_method" value="patch">
     <%= render "partials/post_form", post: @post%>
