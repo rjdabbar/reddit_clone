@@ -21,6 +21,7 @@ module ApplicationHelper
   def delete_button(action_url, button_text)
     <<-HTML.html_safe
     <form action="#{action_url}" method="post">
+      #{form_auth_token}
       <input type="hidden" name="_method" value="delete">
       <button>#{button_text}</button>
     </form>
