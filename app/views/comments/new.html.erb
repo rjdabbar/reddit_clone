@@ -1,0 +1,10 @@
+<a href="<%= post_url(@post) %>"><< <%= @post.title %></a>
+<br>
+<h1>Comment</h1>
+<form action="<%= post_comments_url(@post) %>" method="post">
+  <%= form_auth_token %>
+  <%= render "partials/comment_form", action: :new,
+                                      comment: @comment,
+                                      post_id: @post.id %>
+  <button>Submit</button>
+</form>

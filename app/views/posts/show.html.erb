@@ -1,7 +1,7 @@
 <a href="<%= root_url %>"><< HOME</a>
 <ul>
   <% @post.subs.each do |sub| %>
-  <li><a href="<%= sub_url(sub) %>"><%= sub.title %></a></li>  
+  <li><a href="<%= sub_url(sub) %>"><%= sub.title %></a></li>
   <% end %>
 </ul>
 <h1> <%= @post.title %></a> </h1>
@@ -9,3 +9,5 @@
 <% if current_user == @post.author %>
   <a href="<%= edit_post_url(@post) %>">Edit post</a>
 <% end %>
+<br>
+<a href="<%= new_post_comment_url(@post) %>">Add comment</a>

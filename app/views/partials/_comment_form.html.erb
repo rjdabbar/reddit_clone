@@ -1,0 +1,14 @@
+<% if action == :edit %>
+  <input type="hidden" name="_method" value="patch">
+<% end %>
+
+<input type="hidden" name="comment[post_id]" value=" <%= post_id %>">
+
+<label for="comment_content">Comment:</label>
+<br>
+<textarea
+  id="comment_content"
+  name="comment[content]"
+  rows="8"
+  cols="40"><%= comment.content %></textarea>
+<br>
