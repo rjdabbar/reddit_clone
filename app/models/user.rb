@@ -1,10 +1,14 @@
 class User < ActiveRecord::Base
   validates :user_name, :password_digest, presence: true
-  attr_reader :password
-
   validates :password, length: { minimum: 6, allow_nil: true }
 
   after_initialize :ensure_session_token
+
+  attr_reader :password
+
+  has_many :moderated_subs,
+    class_name: "Sub",
+    foreign_key: :moderator_id
 
   def self.find_by_credentials(user_name, password)
     user = User.find_by(user_name: user_name)
