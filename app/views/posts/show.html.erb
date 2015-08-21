@@ -4,10 +4,24 @@
   <li><a href="<%= sub_url(sub) %>"><%= sub.title %></a></li>
   <% end %>
 </ul>
+
 <h1> <%= @post.title %></a> </h1>
 
 <% if current_user == @post.author %>
   <a href="<%= edit_post_url(@post) %>">Edit post</a>
 <% end %>
 <br>
-<a href="<%= new_post_comment_url(@post) %>">Add comment</a>
+<br>
+<form action="<%= post_comments_url(@post) %>" method="post">
+  <%= form_auth_token %>
+  <%= render "partials/comment_form", action: :new,
+                                      comment: Comment.new,
+                                      post_id: @post.id %>
+
+</form>
+
+<% @post.comments.each do |comment| %>
+  <% if comment.parent_comment_id.nil? %>
+    <%= render "partials/comment", comment: comment %>
+  <% end %>
+<% end %>

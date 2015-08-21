@@ -15,9 +15,19 @@ class CommentsController < ApplicationController
   end
 
   def edit
+    @comment = Comment.find(params[:id])
+    @post = @comment.post
   end
 
   def update
+    @comment = Comment.includes(:post).find(params[:id])
+    if @comment.update(comment_params)
+      flash[:notice] = "Comment edited!"
+      redirect_to post_url(@comment.post)
+    else
+      flash[:errors] = @comment.errors.full_messages
+      render :edit
+    end
   end
 
   def show
