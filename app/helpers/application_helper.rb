@@ -5,6 +5,15 @@ module ApplicationHelper
     end
   end
 
+  def vote_button(action_url, button_text)
+    <<-HTML.html_safe
+      <form action="#{action_url}" method="post">
+        #{form_auth_token}
+        <button>#{button_text}</button>
+      </form>
+    HTML
+  end
+
   def flash_notices
     if flash[:notice]
       "#{flash[:notice]}<br><br>".html_safe

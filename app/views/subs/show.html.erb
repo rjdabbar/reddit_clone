@@ -16,6 +16,9 @@
 <ul>
   <% @sub.posts.each do |post| %>
     <li>
+      <%= post.score %>
+      <%= vote_button(upvote_post_url(post), "^") %>
+      <%= vote_button(downvote_post_url(post), "v") %>
       <a href="<%= post_url(post) %>"><%= post.title %></a>
       by: <%= post.author.user_name %>
     </li>

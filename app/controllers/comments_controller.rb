@@ -41,6 +41,18 @@ class CommentsController < ApplicationController
     redirect_to post_url(@comment.post_id)
   end
 
+  def upvote
+    @comment = Comment.find(params[:id])
+    @comment.upvote!
+    create_redirect(@comment)
+  end
+
+  def downvote
+    @comment = Comment.find(params[:id])
+    @comment.downvote!
+    create_redirect(@comment)
+  end
+
   private
   def comment_params
     params.require(:comment).permit(:content, :post_id, :parent_comment_id)

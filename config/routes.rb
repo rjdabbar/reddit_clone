@@ -4,7 +4,15 @@ Rails.application.routes.draw do
   resource :session, only: [:new, :create, :destroy]
   resources :subs
   resources :posts do
-    resources :comments, except: :index
+    member do
+      post "upvote"
+      post "downvote"
+    end
+    resources :comments, except: :index do
+      member do
+        post "upvote"
+        post "downvote"
+      end
+    end
   end
-
 end

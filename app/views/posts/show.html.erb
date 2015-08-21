@@ -7,6 +7,10 @@
 
 <h1><%= @post.title %></a></h1>
 <p>by: <b><%= @post.author.user_name %></b></p>
+<p>
+  <%= vote_button(upvote_post_url(@post), "^") %>
+  <%= vote_button(downvote_post_url(@post), "v") %>
+</p>
 <p><%= @post.url  %></p>
 <p><%= @post.content %></p>
 

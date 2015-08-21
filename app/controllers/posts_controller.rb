@@ -39,6 +39,18 @@ class PostsController < ApplicationController
   def index
   end
 
+  def upvote
+    @post = Post.find(params[:id])
+    @post.upvote!
+    redirect_to :back
+  end
+
+  def downvote
+    @post = Post.find(params[:id])
+    @post.downvote!
+    redirect_to :back
+  end
+
   def show
     @post = Post.includes(:subs, comments: [:post, :child_comments, :author]).find(params[:id])
     @comment_hash = @post.comments_by_parent_id

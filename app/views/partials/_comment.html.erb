@@ -1,4 +1,8 @@
-<p><b><%= comment.author.user_name %></b>,
+<p>
+<%= comment.score %>
+<%= vote_button(upvote_post_comment_url(comment.post_id, comment), "^") %>
+<%= vote_button(downvote_post_comment_url(comment.post_id, comment), "v") %>
+<b><%= comment.author.user_name %></b>,
   <i><%= formatted_date(comment.updated_at) %></i>
   <% if current_user == comment.author %>
     <a href="<%= edit_post_comment_url(comment.post_id, comment) %>">edit</a>
