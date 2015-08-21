@@ -7,7 +7,7 @@ module ApplicationHelper
 
   def flash_notices
     if flash[:notice]
-      flash[:notice].html_safe
+      "#{flash[:notice]}<br><br>".html_safe
     end
   end
 
