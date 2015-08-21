@@ -2,6 +2,10 @@
   <input type="hidden" name="_method" value="patch">
 <% end %>
 
+<% if action == :reply %>
+  <input type="hidden" name="comment[parent_comment_id]" value="<%= parent_id %>">
+<% end %>
+
 <input type="hidden" name="comment[post_id]" value=" <%= post_id %>">
 
 <label for="comment_content">Comment:</label>

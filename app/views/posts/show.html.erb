@@ -23,8 +23,6 @@
 
 </form>
 
-<% @post.comments.each do |comment| %>
-  <% if comment.parent_comment_id.nil? %>
-    <%= render "partials/comment", comment: comment %>
-  <% end %>
+<% @post.comments.where(parent_comment_id: nil).each do |comment| %>
+  <%= render "partials/comment", comment: comment %>
 <% end %>

@@ -19,6 +19,10 @@ module ApplicationHelper
     HTML
   end
 
+  def formatted_date(updated_at)
+    "#{(updated_at.to_date - Time.now.to_date).to_i} days ago"
+  end
+
   def user_heading
     if logged_in?
       delete_button(session_url, "Log out")
