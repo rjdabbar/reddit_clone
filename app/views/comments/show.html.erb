@@ -1,7 +1,7 @@
+<%= comment_nav(@comment) %>
 
-
-
-
+<br>
+<br>
 <form action="<%= post_comments_url(@comment.post) %>" method="post">
   <%= form_auth_token %>
   <%= render "partials/comment_form", comment: Comment.new,
@@ -10,4 +10,5 @@
                                     post_id: @comment.post_id%>
 </form>
 
+<br>
 <%= render "partials/comment", comment: @comment %>
