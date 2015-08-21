@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   end
 
   def self.generate_session_token
-    SecureRandome.urlsafe_base64(16)
+    SecureRandom.urlsafe_base64(16)
   end
 
   def password=(password)
