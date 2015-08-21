@@ -6,9 +6,8 @@ class PostsController < ApplicationController
   def create
     @post = current_user.posts.new(post_params)
     if @post.save
-      @post.sub_ids = params[:post][:sub_id]
       flash[:notice] = "Post was successfully created"
-      redirect_to sub_url(@post.sub)
+      redirect_to post_url(@post)
     else
       flash[:errors] = @post.errors.full_messages
       render :new
@@ -24,7 +23,7 @@ class PostsController < ApplicationController
 
     if @post.update(post_params)
       flash[:notice] = "Your changes have been recorded"
-      redirect_to sub_url(@post.sub)
+      redirect_to post_url(@post)
     else
       flash[:errors] = @post.errors.full_messages
       render :edit
@@ -38,11 +37,11 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find(params[:id])
+    @post = Post.includes(:subs).find(params[:id])
   end
 
   private
   def post_params
-    params.require(:post).permit(:title, :url, :content, sub_id: [])
+    params.require(:post).permit(:title, :url, :content, sub_ids: [])
   end
 end
