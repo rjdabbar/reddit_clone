@@ -37,7 +37,7 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.includes(:subs, :comments).find(params[:id])
+    @post = Post.includes(:subs, comments: :post).find(params[:id])
   end
 
   private

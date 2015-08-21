@@ -1,0 +1,10 @@
+<p>by: <b><%= comment.author.user_name %></b>,
+  last updated: <i><%= comment.updated_at.to_date %></i>
+  <% if current_user == comment.author %>
+    <a href="<%= edit_post_comment_url(comment.post, comment) %>">edit</a>
+  <% end %>
+  <a href="<%= post_comment_url(comment.post, comment) %>">view</a>
+</p>
+
+<p><%= comment.content %></p>
+<hr>

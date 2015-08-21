@@ -5,7 +5,10 @@
   <% end %>
 </ul>
 
-<h1> <%= @post.title %></a> </h1>
+<h1><%= @post.title %></a></h1>
+<p>by: <b><%= @post.author.user_name %></b></p>
+<p><%= @post.url  %></p>
+<p><%= @post.content %></p>
 
 <% if current_user == @post.author %>
   <a href="<%= edit_post_url(@post) %>">Edit post</a>
