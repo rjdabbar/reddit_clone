@@ -10,6 +10,9 @@ class User < ActiveRecord::Base
     class_name: "Sub",
     foreign_key: :moderator_id
 
+  has_many :posts,
+    foreign_key: :author_id
+
   def self.find_by_credentials(user_name, password)
     user = User.find_by(user_name: user_name)
     return nil if user.nil?

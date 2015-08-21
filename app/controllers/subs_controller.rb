@@ -43,7 +43,7 @@ class SubsController < ApplicationController
   end
 
   def show
-    @sub = Sub.find(params[:id])
+    @sub = Sub.includes(posts: :author).find(params[:id])
   end
 
   private
