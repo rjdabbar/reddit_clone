@@ -1,0 +1,11 @@
+<h1>Welcome to Reddit, front page of the internet</h1>
+
+<a href="<%= new_sub_url %>">Create a sub</a>
+<br><br>
+
+<h3>All subs</h3>
+<ul>
+<% @subs.each do |sub| %>
+  <li><a href="<%= sub_url(sub) %>"><%= sub.title %></a></li>
+<% end %>
+</ul>
